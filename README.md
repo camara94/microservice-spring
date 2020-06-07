@@ -68,3 +68,29 @@ notre cas présent, nous avons crée un répository <code>cloud-config</code>: (
 ### Dépendances maven
 * spring-cloud-config-server
 
+## Partie III: Création d'un service d'annuaire (service-register)
+Ce service permet d'enrégistrer tous nos services(api) du microservice et enfin de pour les
+exposer aux applications clientes. 
+Et surtout, on ne doit pas oublier d'ajouter ces lignes dans son fichier de config au niveau du 
+repository:<br>
+### Configuration réquise:
+<code>sercvice-register/src/main/resources/bootstrap.properties</code>: (cette ligne pour indiqué l'emplacement du fichier seulement)<br>
+<pre>
+	<code>
+		spring.application.name=eureka-service
+		spring.cloud.config.uri=http://localhost:8085
+	</code>
+</pre><br>
+
+<code>cloud-config/eureka-service.properties</code>: (cette ligne pour indiqué l'emplacement du fichier seulement) <br>
+<pre>
+	<code>
+		server.port=8761
+		eureka.client.register-with-eureka=false
+		eureka.client.fetch-registry=false
+	</code>
+</pre>
+
+### Dépendances maven
+* spring-cloud-starter-netflix-eureka-server
+
