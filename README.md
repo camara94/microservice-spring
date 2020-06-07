@@ -41,3 +41,30 @@ Ce service est accessible à travers cet endpoint par la méthode **GET**
 * spring-cloud-netflix-eureka-client
 * spring-cloud-starter-config
 * spring-cloud-starter-netflix-eureka-client
+
+## Partie II: Création d'un service de configuration (service-config)
+Ce service permet de centraliser la configuration et la gestion de 
+tous nos services(api) du microservice. 
+Et pour que ça fonctionne, nous devons créer un répository git qui sera lié au service de configuration par:
+1. si le répository git se trouve en local:
+	<code>spring.cloud.config.server.git.uri=file://${home.user</code>,
+2. si le répository git se trouve en ligne:
+	<code>spring.cloud.config.server.git.uri=url</code>, 
+ensuite on crée un fichier properties pour chaque service et en plus ces fichiers doivent avoir même nom que le service,
+c'est dans ces fichier que nous ferons toutes les configurations des services correspondants
+on peut vérifier son fonctionnement à travers cet **URI** avec la méthode **GET** <code>http://localhost:8085/application/master</code>
+notre cas présent, nous avons crée un répository <code>cloud-config</code>: (cette ligne pour indiqué l'emplacement du fichier seulement)
+
+### Configuration réquise:
+<code>sercvice-config/src/main/resources/application.properties</code>: (cette ligne pour indiqué l'emplacement du fichier seulement)<br>
+<pre>
+	<code>
+		server.port=8085
+		spring.cloud.config.server.git.uri=https://github.com/camara94/cloud-config.git
+		#file://${user.home}/microservice-spring/cloud-config
+	</code>
+</pre>
+
+### Dépendances maven
+* spring-cloud-config-server
+
