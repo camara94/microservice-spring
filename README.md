@@ -94,3 +94,18 @@ repository:<br>
 ### Dépendances maven
 * spring-cloud-starter-netflix-eureka-server
 
+## Partie IV: Création d'un service proxy (service-poxy)
+Ce service permet de balancer vers les differents services(API) du microservice
+en fin répondre <br>
+### Configuration réquise:
+<code>sercvice-proxy/src/main/resources/application.properties</code>: (cette ligne pour indiqué l'emplacement du fichier seulement)
+<pre>
+	<code>
+		server.port=8761
+		eureka.client.register-with-eureka=false
+		eureka.client.fetch-registry=false
+	</code>
+</pre>
+
+### Dépendances maven
+* spring-cloud-starter-netflix-eureka-server
